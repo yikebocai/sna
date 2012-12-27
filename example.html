@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Links Network demo - images</title>
+
+    <style>
+      body {font: 10pt arial;}
+    </style>
+                                 
+    <script type="text/javascript" src="js/network.js"></script>
+    
+    <script type="text/javascript">
+		var network = null;
+		function drawVisualization() {
+		  
+
+		  var DIR = 'img/';
+		  var nodesTable = [];
+
+		  nodesTable.push({
+			'id': 1,
+			'text': '1:Algie',
+			'image':DIR + 'Smiley-Angry-icon.png',
+			'style':'image',
+			'title':'<b>test</b> <a href="http://www.alibaba.com"> me</a>'
+			},
+			{
+			'id': 2,
+			'text': '2:Alston',
+			'image':DIR + 'User-Administrator-Blue-icon.png',
+			'style':'image',
+			'title':'<b>ID:</b><a href="http://www.alibaba.com"> 123456</a><br/><b>LoginID:</b>cn1892<br/><b>×¢²áÊ±¼ä£º</b> 2012-9-10'
+			},
+			{
+			'id': 3,
+			'text': '3:Barney',
+			'image':DIR + 'User-Administrator-Blue-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 4,
+			'text': '4:Coley',
+			'image':DIR + 'User-Administrator-Green-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 5,
+			'text': '5:Grant',
+			'image':DIR + 'User-Coat-Blue-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 6,
+			'text': '6:Langdon',
+			'image':DIR + 'User-Coat-Green-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 7,
+			'text': '7:Lee',
+			'image':DIR + 'User-Coat-Red-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 8,
+			'text': '8:Merlin',
+			'image':DIR + 'User-Executive-Green-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 9,
+			'text': '9:Mick',
+			'image':DIR + 'User-Preppy-Blue-icon.png',
+			'style':'image'
+			},
+			{
+			'id': 10,
+			'text': '10:Tod',
+			'image':DIR + 'User-Preppy-Red-icon.png',
+			'style':'image'   
+		 });
+		 
+		  // create connections
+		   var color = '#BFBFBF';
+		   var len = 100; // pixels
+		   var linksTable =[];
+		   linksTable.push(
+		   {'from' : 2,
+			'to' : 8,
+			'value': 3,
+			'color':color,
+			'length':len,
+			'title':'umid=12352093902'
+		   },
+		   {'from': 2,
+			'to': 9,
+			'value': 5,
+			'color':color,
+			'length':len,
+			'title':'ip=128.10.200.94'
+		   },
+		   {'from':2,
+			'to':10,
+			'value':1,
+			'color':color,
+			'length':len
+		   },
+		   {'from':4,
+			'to':6,
+			'value':8,
+			'color':color,
+			'length':len
+		   },
+		   {'from':5,
+			'to':7,
+			'value':2,
+			'color':color,
+			'length':len
+		   },
+		   {'from':4,
+			'to':5,
+			'value':1,
+			'color':color,
+			'length':len
+		   },
+		   {'from':9,
+			'to':10,
+			'value':2,
+			'color':color,
+			'length':len
+		   },
+		   {'from':2,
+			'to':3,
+			'value':6,
+			'color':color,
+			'length':len
+		   },
+		   {'from':3,
+			'to':9,
+			'value':4,
+			'color':color,
+			'length':len
+		   },
+		   {'from':5,
+			'to':3,
+			'value':1,
+			'color':color,
+			'length':len
+		   },
+		   {'from':2,
+			'to':7,
+			'value':4,
+			'color':color,
+			'length':len
+		   });
+	  
+		  
+		// specify options
+		options = {
+		  'width':  '600px', 
+		  'height': '600px',
+		  'backgroundColor': {
+			'fill': '#F3F3F3'
+		  }
+		};
+
+		// Instantiate our graph object.
+		var container =document.getElementById('mynetwork');
+		network = new links.Network(container);
+		
+		// Add event listeners
+        links.events.addListener(network, 'select', onselect);
+
+		// Draw our graph with the created data and options 
+		network.draw(nodesTable, linksTable, options);
+      }
+	  
+	function onselect() {
+        var sel = network.getSelection();
+
+        var info = 'selected row(s): '  
+        for (var i = 0; i < sel.length; i++) {
+            info += sel[i].row + ' ';
+        }
+        
+         document.getElementById('info').innerHTML += info + '<br>';
+      }
+
+    </script>
+  </head>
+
+  <body onload="drawVisualization()">
+	<table>
+      <tr>
+        <td>
+          <div id="mynetwork"></div>
+        </td>
+        <td>
+          <div id="info"></div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
